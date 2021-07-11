@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 import { PaymentDetailFormComponent } from './Payment-details/payment-detail-form/payment-detail-form.component';
-
+import { from } from 'rxjs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +13,8 @@ import { PaymentDetailFormComponent } from './Payment-details/payment-detail-for
     PaymentDetailFormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
