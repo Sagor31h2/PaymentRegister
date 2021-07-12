@@ -1,28 +1,56 @@
-<form>
-  <input type="hidden" name="paymentDetailsId" [value]="service.formData.paymentDetailsId" />
+<form novalidate>
+  <input
+    type="hidden"
+    name="paymentDetailsId"
+    [value]="service.formData.paymentDetailsId"
+  />
 
   <div class="form-group">
     <label> Card Owner Name</label>
-    <input class="form-control form-control-lg" placeholder="Full Name" name="cardOwnerName" #cardOwnerName="ngModel"
-      [(ngModel)]="service.formData.cardOwnerName" />
+    <input
+      class="form-control form-control-lg"
+      placeholder="Full Name"
+      name="cardOwnerName"
+      #cardOwnerName="ngModel"
+      [(ngModel)]="service.formData.cardOwnerName"
+    />
   </div>
 
   <div class="form-group">
     <label> Card Owner Number</label>
-    <input class="form-control form-control-lg" placeholder="Card Number" name="cardNumber" #cardNumber="ngModel"
-      [(ngModel)]="service.formData.cardNumber" />
+    <input
+      class="form-control form-control-lg"
+      placeholder="Card Number"
+      name="cardNumber"
+      #cardNumber="ngModel"
+      [(ngModel)]="service.formData.cardNumber"
+    />
   </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label> Security Code</label>
+      <input
+        type="password"
+        class="form-control form-control-lg"
+        placeholder="Security Code"
+        name="securityCode"
+        #securityCode="ngModel"
+        [(ngModel)]="service.formData.securityCode"
+      />
+    </div>
 
+    <div class="form-group col-md-6">
+      <label> Epiration Date</label>
+      <input
+        class="form-control form-control-lg"
+        placeholder="MM/YY"
+        name="expirationDate"
+        #expirationDate="ngModel"
+        [(ngModel)]="service.formData.expirationDate"
+      />
+    </div>
+  </div>
   <div class="form-group">
-    <label> Security Code</label>
-    <input type="password" class="form-control form-control-lg" placeholder="Security Code" name="securityCode"
-      #securityCode="ngModel" [(ngModel)]="service.formData.securityCode" />
+    <button class="btn btn-info btn-lg btn-block" type="submit">Submit</button>
   </div>
-
-  <div class="form-group">
-    <label> Epiration Date</label>
-    <input class="form-control form-control-lg" placeholder="MM/YY" name="expirationDate" #expirationDate="ngModel"
-      [(ngModel)]="service.formData.expirationDate" />
-  </div>
-
 </form>
