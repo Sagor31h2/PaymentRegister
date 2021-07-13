@@ -36,6 +36,8 @@ namespace PaymentRegister_.net_core5_angular11
 
             services.AddDbContext<PaymentDetailsContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnetionString")));
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +45,11 @@ namespace PaymentRegister_.net_core5_angular11
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(options =>
+                options.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentRegister_.net_core5_angular11 v1"));
