@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="jumbotron py-3">
   <h1 class="display-4 text-center">Payment Register</h1>
 </div>
@@ -7,6 +8,23 @@
     <app-payment-detail-form> </app-payment-detail-form>
   </div>
   <div class="col-md-6">
-    <span>list of payment</span>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Card Owner Name</th>
+          <th>Card Number</th>
+          <th>Expiration Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pd of service.list">
+          <td>{{ pd.cardOwnerName }}</td>
+          <td>{{ pd.cardNumber }}</td>
+          <td>{{ pd.expirationDate }}</td>
+          <td><i class="far fa-trash-alt fa-lg text-danger"></i></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
