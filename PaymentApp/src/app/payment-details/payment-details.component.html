@@ -23,7 +23,12 @@
           <td>{{ pd.cardOwnerName }}</td>
           <td>{{ pd.cardNumber }}</td>
           <td>{{ pd.expirationDate }}</td>
-          <td><i class="far fa-trash-alt fa-lg text-danger"></i></td>
+          <td>
+            <i
+              class="far fa-trash-alt fa-lg text-danger"
+              (click)="onDelete(pd.paymentDetailsId)"
+            ></i>
+          </td>
           <td (click)="populateForm(pd)"><i class="fas fa-lg fa-edit"></i></td>
         </tr>
       </tbody>
