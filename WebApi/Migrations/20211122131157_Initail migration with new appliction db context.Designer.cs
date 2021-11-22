@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PaymentRegister_.net_core5_angular11.Models;
+using WebApi.Data;
 
 namespace PaymentRegister_.net_core5_angular11.Migrations
 {
-    [DbContext(typeof(PaymentDetailsContext))]
-    partial class PaymentDetailsContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20211122131157_Initail migration with new appliction db context")]
+    partial class Initailmigrationwithnewapplictiondbcontext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

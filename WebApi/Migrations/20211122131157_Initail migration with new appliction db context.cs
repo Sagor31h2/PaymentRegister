@@ -2,7 +2,7 @@
 
 namespace PaymentRegister_.net_core5_angular11.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initailmigrationwithnewapplictiondbcontext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

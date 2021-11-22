@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PaymentRegister_.net_core5_angular11.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using WebApi.Data;
 
 namespace PaymentRegister_.net_core5_angular11
 {
@@ -27,15 +28,23 @@ namespace PaymentRegister_.net_core5_angular11
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentRegister_.net_core5_angular11", Version = "v1" });
-            });
+            services
+                .AddSwaggerGen(c =>
+                {
+                    c
+                        .SwaggerDoc("v1",
+                        new OpenApiInfo {
+                            Title = "PaymentRegister_.net_core5_angular11",
+                            Version = "v1"
+                        });
+                });
 
-            services.AddDbContext<PaymentDetailsContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DevConnetionString")));
+            services
+                .AddDbContext<ApplicationDbContext>(options =>
+                    options
+                        .UseSqlServer(Configuration
+                            .GetConnectionString("DevConnetionString")));
 
             services.AddCors();
         }
@@ -45,24 +54,31 @@ namespace PaymentRegister_.net_core5_angular11
         {
             if (env.IsDevelopment())
             {
-                app.UseCors(options =>
-                options.WithOrigins("http://localhost:4200")
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+                app
+                    .UseCors(options =>
+                        options
+                            .WithOrigins("http://localhost:4200")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
 
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentRegister_.net_core5_angular11 v1"));
+                app
+                    .UseSwaggerUI(c =>
+                        c
+                            .SwaggerEndpoint("/swagger/v1/swagger.json",
+                            "PaymentRegister_.net_core5_angular11 v1"));
             }
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
         }
     }
 }
