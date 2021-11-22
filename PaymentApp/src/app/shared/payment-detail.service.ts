@@ -12,7 +12,7 @@ export class PaymentDetailService {
 
   list: PaymentDetail[];
 
-  readonly baseUrl = 'http://localhost:30130/api/PaymentDetail'
+  readonly baseUrl = 'http://localhost:5000/api/PaymentDetail'
 
   postPaymentDetail() {
 
