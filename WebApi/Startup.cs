@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PaymentRegister_.net_core5_angular11.Models;
 using WebApi.Data;
+using WebApi.Repositories;
+using WebApi.Repositories.IRepositories;
 
 namespace PaymentRegister_.net_core5_angular11
 {
@@ -47,6 +49,9 @@ namespace PaymentRegister_.net_core5_angular11
                             .GetConnectionString("DevConnetionString")));
 
             services.AddCors();
+
+            //Repositories
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
