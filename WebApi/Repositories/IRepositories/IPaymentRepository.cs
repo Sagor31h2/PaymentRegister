@@ -17,7 +17,5 @@ namespace WebApi.Repositories.IRepositories
         void DeletePaymentDetails(int id);
 
         bool PaymentDetailsExists(int id);
-
-        Task<bool> SaveAsync();
     }
 }

@@ -15,11 +15,11 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
     [ApiController]
     public class PaymentDetailController : ControllerBase
     {
-        private readonly IPaymentRepository pr;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PaymentDetailController(IPaymentRepository pr)
+        public PaymentDetailController(IUnitOfWork unitOfWork)
         {
-            this.pr = pr;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/PaymentDetail
@@ -27,7 +27,8 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
         public async Task<ActionResult<IEnumerable<PaymentDetails>>>
         AllpaymentDetails()
         {
-            var allPayment = await pr.AllpaymentDetails();
+            var allPayment =
+                await _unitOfWork.paymentRepository.AllpaymentDetails();
             return Ok(allPayment);
         }
 
@@ -36,7 +37,8 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
         public async Task<ActionResult<PaymentDetails>>
         GetPaymentDetails(int id)
         {
-            var paymentDetails = await pr.GetPaymentDetails(id);
+            var paymentDetails =
+                await _unitOfWork.paymentRepository.GetPaymentDetails(id);
 
             if (paymentDetails == null)
             {
@@ -57,11 +59,13 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
                 return BadRequest();
             }
 
-            await pr.PutPaymentDetails(paymentDetails);
+            await _unitOfWork
+                .paymentRepository
+                .PutPaymentDetails(paymentDetails);
 
             try
             {
-                await pr.SaveAsync();
+                await _unitOfWork.SaveAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,8 +88,10 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
         public async Task<ActionResult<PaymentDetails>>
         PostPaymentDetails(PaymentDetails paymentDetails)
         {
-            await pr.PostPaymentDetails(paymentDetails);
-            await pr.SaveAsync();
+            await _unitOfWork
+                .paymentRepository
+                .PostPaymentDetails(paymentDetails);
+            await _unitOfWork.SaveAsync();
 
             return CreatedAtAction("GetPaymentDetails",
             new { id = paymentDetails.PaymentDetailsId },
@@ -96,15 +102,15 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePaymentDetails(int id)
         {
-            pr.DeletePaymentDetails (id);
-            await pr.SaveAsync();
+            _unitOfWork.paymentRepository.DeletePaymentDetails (id);
+            await _unitOfWork.SaveAsync();
 
             return NoContent();
         }
 
         private bool PaymentDetailsExists(int id)
         {
-            return pr.PaymentDetailsExists(id);
+            return _unitOfWork.paymentRepository.PaymentDetailsExists(id);
         }
     }
 }

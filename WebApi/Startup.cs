@@ -51,7 +51,7 @@ namespace PaymentRegister_.net_core5_angular11
             services.AddCors();
 
             //Repositories
-            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

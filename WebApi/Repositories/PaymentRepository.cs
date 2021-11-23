@@ -49,11 +49,6 @@ namespace WebApi.Repositories
             return true;
         }
 
-        public async Task<bool> SaveAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
-
         public bool PaymentDetailsExists(int id)
         {
             return _context.paymentDetails.Any(e => e.PaymentDetailsId == id);
