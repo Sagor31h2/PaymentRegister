@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PaymentRegister_.net_core5_angular11.Models;
 using WebApi.Data;
 using WebApi.Repositories.IRepositories;
@@ -16,10 +17,12 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
     public class PaymentDetailController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<PaymentDetailController> _logger;
 
-        public PaymentDetailController(IUnitOfWork unitOfWork)
+        public PaymentDetailController(IUnitOfWork unitOfWork,ILogger<PaymentDetailController> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         // GET: api/PaymentDetail
@@ -29,6 +32,7 @@ namespace PaymentRegister_.net_core5_angular11.Controllers
         {
             var allPayment =
                 await _unitOfWork.paymentRepository.AllpaymentDetails();
+            _logger.LogInformation($"return alll details");
             return Ok(allPayment);
         }
 
