@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace PaymentRegister_.net_core5_angular11
 {
@@ -21,6 +22,8 @@ namespace PaymentRegister_.net_core5_angular11
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).UseSerilog((hostingContext, ConfigurationSetting) =>
+                ConfigurationSetting.ReadFrom
+                .Configuration(hostingContext.Configuration));
     }
 }
