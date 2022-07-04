@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  paymentregister-.net_core5-angular11:
+    image: ${DOCKER_REGISTRY-}paymentregisternetcore5angular11
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
